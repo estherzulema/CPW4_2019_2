@@ -1,0 +1,31 @@
+@import '../Cores.scss';
+@import '../fonts/Fontes.scss';
+
+
+
+.conteudo {
+
+  float: left;
+  padding: 20px;
+  width: 55%;
+  background-color: $cor-fundo-item1;
+  color:$cor-texto;
+  height: 400px;
+  font-family: $fonte-principal;
+
+}
+h3 {
+  color: $cor-titulo;
+  text-align: center;
+  font-family: $fonte-menu;
+}
+
+p {
+  font-size: 90%;
+  padding:20px;
+}
+
+
+.ItemContato{
+    padding:50px;
+}
