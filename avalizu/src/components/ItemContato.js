@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './Menu.scss';
 import './ItemContato';
 
 export default class ItemContato extends Component {

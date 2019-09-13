@@ -1,26 +1,31 @@
 @import '../Cores.scss';
 @import '../fonts/Fontes.scss';
 
+body{
+    height: 100%;
+    background-color: $cor-menu;
+   
+  }
+
 #menu {
     float: left;
-    width: 25%;
-    height: 420px;
+    width: 30%;
+    height:948px;
     background-color:$cor-menu;
     padding: 10px;
     font-family: $fonte-principal;
 }
-    
-
 
 #menu p {
+    
     padding: 20px ;
 }
 
 #menu li {
     display: table;
     padding: 6px ;
+   
 }
-
 
 #menu li:hover {
     border-bottom: 5px solid $cor-fundo-item1;
@@ -30,4 +35,7 @@
     text-decoration: none;
     color: $cor-titulo;
     font-size: 110%;
+}
+h3{
+ color:$cor-texto;
 }

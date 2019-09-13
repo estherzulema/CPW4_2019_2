@@ -1,13 +1,16 @@
 @import '../Cores.scss';
 @import '../fonts/Fontes.scss';
 
-
+body{
+  height: 100%;
+  background-color: $cor-fundo-item1;
+}
 
 .conteudo {
 
   float: left;
   padding: 20px;
-  width: 55%;
+  width: 45%;
   background-color: $cor-fundo-item1;
   color:$cor-texto;
   height: 400px;
@@ -21,11 +24,12 @@ h3 {
 }
 
 p {
-  font-size: 90%;
-  padding:20px;
+  font-size: 80%;
+  padding:10px;
 }
 
 
-.ItemContato{
-    padding:50px;
+
+h4{
+    padding:5px;
 }

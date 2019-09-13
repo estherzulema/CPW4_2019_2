@@ -9,11 +9,11 @@ export default class  Menu extends Component {
             <div className="banner">
                 
                 <div id="menu">
-                <p>
+                <h3>
                   
                 
-                <Link to="/bio" id='ful'>fulano</Link>
-                    </p>
+                <Link to="/bio"  >Esther Lubas</Link>
+                    </h3>
 
                     <li>
                         <Link to="/home">Home</Link>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import ItemContato from './ItemContato';
-import '../components/Estilo.scss';
+import './Estilo.scss';
 
 
 export default class Contato extends Component {
@@ -9,12 +9,12 @@ export default class Contato extends Component {
         return (
             <div >
                 <h3>Contato</h3>
-                <p>Para mais informação entre em contato</p>
+                <h5>Para mais informação entre em contato</h5>
                 
-                <ItemContato
+                <h4><ItemContato
                     
                     descricao="Endereço"
-                    contato="Rua 8 de novembro, 22" />
+                    contato="Rua 1234, 11" />
                 <ItemContato
                     
                     descricao="Telefone"
@@ -23,6 +23,7 @@ export default class Contato extends Component {
                    
                     descricao="E-mail"
                     contato="cpw4@email.com" />
+                    </h4>
             </div>
         );
     }
