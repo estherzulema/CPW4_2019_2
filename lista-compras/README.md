@@ -1,1 +1,2 @@
-#CPW4_2_lista_compras
+# Alunas:
+# Esther Zulema Lubas, Jessica.
