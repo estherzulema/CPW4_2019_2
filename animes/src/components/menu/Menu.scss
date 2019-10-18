@@ -1,0 +1,22 @@
+@import '../../Cores';
+@import '../../fonts/Fonts.scss';
+
+.menu{
+    font-family: $fonte-titulo;
+    background-color: $cor-menu;
+    color: white;
+    padding:  20px 10px;
+    margin-bottom: 10px;
+
+    * { vertical-align: middle; }
+    .logo{
+        width: 46px;
+        border-radius: 60%;
+        margin: 10px;
+    }
+    
+    span{
+        font-size: 130%;
+        margin-left: 10px;
+    }
+}

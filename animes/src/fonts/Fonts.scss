@@ -1,0 +1,17 @@
+@font-face{
+    font-family: 'titulo';
+    src:url(./Courgette-Regular.ttf)
+}
+
+@font-face{
+    font-family: 'principal';
+    src:url(./Courgette-Regular.ttf)
+}
+@font-face{
+    font-family: 'anime';
+    src:url(./Signika-SemiBold.ttf)
+}
+
+$fonte-principal:'principal';
+$fonte-titulo:'titulo';
+$fonte-anime:'anime';

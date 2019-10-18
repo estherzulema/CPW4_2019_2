@@ -1,0 +1,79 @@
+@import '../Cores.scss';
+@import '../../src/fonts/Fonts.scss';
+
+.conteiner{
+   
+
+        #formNovaLista{
+            padding: 10px;
+            
+
+            input{
+                display: block;
+                margin: auto;
+
+                &[type=text]{
+                    width: 80%;
+                    height: 38px;
+                    font-size: 100%;
+                    border: 1px solid #aaaaaa;
+                    border-radius: 5px;
+                    margin-bottom: 10px;
+                    font-family: $fonte-principal;
+                    padding: 5px 8px;
+                }
+
+                &[type=submit]{
+                    width: 40%;
+                    padding: 8px;
+                    background: $cor-botao;
+                    color: white;
+                    border-radius: 6px;
+                    font-size: 110%;
+                    font-family: $fonte-principal;
+                }
+            }
+
+            img{
+                width: 30px;
+            }
+        } 
+}
+
+.card{
+    display: inline;
+    vertical-align: middle;
+    width: 50%;
+    text-align: center;
+
+    .imagem{
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 150px;
+       margin-left: 25%;
+
+        .imagem:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+          }
+        
+    }
+    
+
+    .card_central{
+        padding-top: 0px;
+
+       .card_titulo{
+            font-family: $fonte-titulo;
+            font-size: 16px;
+        }
+
+        .card_Text{
+            padding-top: 0px;
+            font-family: $fonte-principal;
+            font-size: 16px;
+        }
+
+    }
+}
+    
