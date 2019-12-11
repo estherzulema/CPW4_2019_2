@@ -1,131 +1,153 @@
-
 import React, { Component } from 'react';
-import ReactLoading from 'react-loading';
-import { Link } from 'react-router-dom';
 
-import logo from '../img/logo.png';
-
-import Header from '../components/Header';
-import ArtigoService from '../services/ArtigoService';
 import './Pesquisar.scss';
+
+
 
 export default class Pesquisar extends Component {
 
     constructor() {
         super();
-
         this.state = {
-            pesquisa: [],
-            carregando: false,
-            textoPesquisa: ''
+            valoresRetornados: [],
+            termosPesquisa: ''
         }
-
-        this.service = new ArtigoService();
     }
 
-    pesquisar = event => {
-        const consulta = event.target.value;
-        /**
-         * Seta para "true" a flag "carregando",
-         * sinalizando que a animação de loading
-         * deve ser exibida
-         */
+    pesquisa = event => {
+        event.preventDefault();
+
+        //Valores de retorno de pesquisa da wiki
+
         this.setState({
-            carregando: true,
-            textoPesquisa: consulta,
-            pesquisa: []
+            valoresRetornados: []
         });
 
-        this.service
-            .pesquisar(consulta)
-            .then(resposta => this.setState({
-                pesquisa: resposta.data,
-                carregando: false
-            }))
-            .catch(erro => {
-                console.log(erro);
-                this.setState({ carregando: false });
-            });
+        const ponteiro = this;
+        //url https://pt.wikipedia.org/w/api.php?action=opensearch&search=
+
+        var url = "https://pt.wikipedia.org/w/api.php";
+
+        var param = {
+            action: 'query',
+            list: 'search',
+            srsearch: this.state.termosPesquisa,
+            format: 'json'
+        };
+
+        url = url + '?origin=*';
+        Object.keys(param).forEach((key) => {
+            url += "&" + key + "=" + param[key];
+        });
+
+        fetch(url)
+            .then(
+                function (response) {
+                    return response.json();
+                }
+            )
+            .then(
+                function (resposta) {
+
+                    for (var key in resposta.query.search) {
+                        ponteiro.state.valoresRetornados.push({
+
+                            pagResultID: resposta.query.search[key].pageid,
+                            pagResultTitulo: resposta.query.search[key].title,
+                            pagResultTrecho: resposta.query.search[key].snippet
+                        });
+                    }
+                }
+            )
+            .then(
+                function (resposta) {
+                    for (var key2 in ponteiro.state.valoresRetornados) {
+                        // console.log(ponteiro.state.valoresRetornados);
+
+                        let page = ponteiro.state.valoresRetornados[key2];
+
+                        let pageID = page.pagResultID;
+
+                        //URL Para recuperar o URL da página por ID da página
+                        //url https://pt.wikipedia.org/w/api.php?action=opensearch&search=
+
+                        let recuperarUrl = `https://pt.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${pageID}&inprop=url&format=json`;
+
+                        fetch(recuperarUrl)
+                            .then(
+                                function (resposta) {
+                                    return resposta.json();
+                                }
+                            )
+                            .then(
+                                function (resposta) {
+
+                                    //URL completo da página de resultados da consulta
+                                    
+                                    page.urlResultConsulta =
+                                        resposta.query.pages[pageID].fullurl;
+
+                                    ponteiro.forceUpdate();
+                                }
+                            )
+                    }
+                }
+            )
+    }
+
+    aterarTermPesq = event => {
+        this.setState({
+            termosPesquisa: event.target.value
+        });
     }
 
     render() {
-        const { pesquisa, textoPesquisa } = this.state;
-        console.log(pesquisa);
+        let pesquisaResults = [];
+
+        // console.log(this.state.valoresRetornados);
+
+        for (var key3 in this.state.valoresRetornados) {
+            pesquisaResults.push(
+
+                <div className="resultado" key={key3}>
 
 
-        const listaPesquisa = pesquisa.map(pesquisas => {
-            
-            
+                    <h3>
+                        <a href={this.state.valoresRetornados[key3].urlResultConsulta}>
+                            {this.state.valoresRetornados[key3].pagResultTitulo}
+                        </a>
+                    </h3>
 
-            return (
-                <div key={pesquisas.show.id} className="serie">
-                    <Link to={
-                        {
-                            pathname: '/serie',
-                            state: { pesquisas }
-                        }
-                    }>
-                        <img
-                            
-                            alt="Cartaz da série" />
-                    </Link>
 
-                    <Link to={
-                        {
-                            pathname: '/serie',
-                            state: { pesquisas }
-                        }
-                    }>
-                        <span>{pesquisas.show.name}</span>
-                    </Link>
+
+                    <span className='link'>
+                        <a href={this.state.valoresRetornados[key3].urlResultConsulta}>
+                            {this.state.valoresRetornados[key3].urlResultConsulta}
+                        </a>
+                    </span>
+
+                    <p className="descricao" dangerouslySetInnerHTML=
+                        {{ __html: this.state.valoresRetornados[key3].pagResultTrecho }}></p>
+
                 </div>
-            )
-        });
+            );
+        }
 
-        const naoTemResultadoParaExibir =
-            listaPesquisa.length === 0;
-        const usuarioEstaPesquisando =
-            textoPesquisa.length > 0;
+        console.log(pesquisaResults);
 
         return (
-            <div>
-                <Header
-                    enderecoPaginaAnterior="/"
-                    logo={logo}
-                    titulo="Pesquisador de Artigos"
-                    />
 
-                <div id="areaPesquisa">
-                    <input
-                        value={this.state.textoPesquisa}
-                        id="campoPesquisa"
-                        onChange={this.pesquisar}
-                        placeholder="search"
-                        type="text" />
-                </div>
+            <div className="inicio">
+                <h1>Buscador de artigos</h1>
+                <form action="">
+                    <input type="text" value={this.state.termosPesquisa || ''} onChange={this.aterarTermPesq} placeholder='' />
+                    <button type='submit' onClick={this.pesquisa}>Search</button>
+                </form>
 
-                {
-                    this.state.carregando &&
-                    <div id="areaLoading">
-                        <ReactLoading
-                            id="animacao"
-                            type="bars"
-                            color="#f734c6"
-                            height="60px"
-                            width="60px" />
-                    </div>
-                }
 
-                <div id="areaResultados">
-                    {
-                        (naoTemResultadoParaExibir
-                            && usuarioEstaPesquisando) &&
-                        <span id="mensagemNaoEncontrado">Nenhuma artigo encontrado</span>
-                    }
-                    {listaPesquisa}
-                </div>
+                {pesquisaResults}
 
             </div>
-        )
+        );
     }
 }

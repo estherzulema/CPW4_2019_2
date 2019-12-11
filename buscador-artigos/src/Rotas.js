@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import Pesquisar from './pages/Pesquisar';
-import VisualizarArtigo from './pages/VisualizarArtigo';
+
 
 const Rotas = () => (
     <BrowserRouter>
@@ -15,10 +15,7 @@ const Rotas = () => (
                 exact
                 path="/"
                 component={Pesquisar} />
-            <Route
-                exact
-                path="/serie"
-                component={VisualizarArtigo} />
+            
         </Switch>
     </BrowserRouter>
 );

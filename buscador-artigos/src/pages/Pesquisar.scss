@@ -2,86 +2,164 @@
 @import '../fonts/Fontes';
 
 
-.header{
-    text-align: center;
-}
-#areaPesquisa {
-    margin: 50px 0px;
-    text-align: center;
+            * {
+                margin: 0;
+                padding: 0;
+                background:$cor4;
+        }
+            
+            .inicio {
+                width: 1100px;
+                margin: 0 auto;
+                text-align: center;
+                margin-top: 50px;
+         }
+            h1 {
+                font-size: 50px;
+                color:$cor3;
+                font-family:$fonte-decorativa;
+                margin-bottom: 40px;
+         }
 
-    #campoPesquisa {
-        width: 50%;
-        height: 35px;
-        text-align: left;
-        padding: 0px 10px;
-        font-family: $fonte-padrao;
-        font-size: 100%;
-        border-radius: 20px;
-        border: none;
-        outline: none;
-        box-shadow: 1px 1px 5px #cccccc,
-            -1px -1px 3px #dddddd;
-    }
-}
-
-#animacao {
-    margin: auto;
-}
-
-#areaResultados {
-    margin: 0px 20px;
-
-    .serie {
-        display: inline-block;
-        width: calc(100% / 3);
-        margin-bottom: 40px;
-
-        img,
-        span {
-            display: block;
+            form {
+                display: inline-block;
+                border-radius: 20px;
+                box-shadow: 0 0 19px 1px rgba(118, 191, 219, 0.349);
+                margin-bottom: 40px;
+            
         }
 
-        img {
-            margin: auto;
-            width: 80%;
+            input {
+                line-height: 40px;
+                border-radius: 20px 0 0 20px;
+                border: none;
+                width: 400px;
+                padding: 0 20px;
+
+                &[type=text] {
+                    background: rgb(252, 245, 235);
+                font-family: $fonte-decorativa;
+          }
         }
+            
+            button {
+                line-height: 40px;
+                border: none;
+                background:$cor5;
+                padding: 0 20px;
+            border-radius: 0 20px 20px 0;
 
-        span {
-            text-align: center;
-            font-family: $fonte-negrito;
-            font-size: 85%;
-            margin-top: 10px;
+            &[type=submit] {
+            font-family: $fonte-decorativa;    
+          }
         }
+            
+             input , button:focus {
+                outline: none;
+         }
 
-        a {
-            color: black;
-            text-decoration: none;
-
-            &:hover {
+        .resultado {
+                width: 800px;
+                margin: 0 auto;
+                display:inline-block;
+                text-align: left;
+                margin-bottom: 20px;
+     }
+         .resultado h3 {
+                font-size: 25px;
+                color: $cor3;
+                font-family: $fonte-negrito;
+     }
+         .resultado h3 a {
+                color: $cor3;
+                display: inline-block;
+                line-height: 16px;
+                text-decoration: none;
+     }
+          .resultado h3 a:hover {
+                text-decoration: none;
+     }
+            
+          .resultado .link a {
+                text-decoration: none;
+                font-size: $fonte-decorativa;
+                color: $cor2;
+     }
+            
+          .resultado .descricao {
                 color: $cor1;
+                font-family: $fonte-padrao;
+     }
+
+
+ 
+    @media only screen and (max-width: 768px){
+        .inicio{
+            text-align: center;
+            width: 90%;
+            margin: 0px auto 2px auto;
+            font-size: 70%;
+            padding: 5px;
+            margin-left: 13px;
+        }
+
+            h1{
+            font-size: 25px;
+            padding: 10px;
+            margin-bottom: 20px;
+         }
+         
+
+            h3{
+            margin-left: 10px;
+            font-size:16px;
+        }
+
+            .descricao{
+            width: 30%;
+            font-size: 14px;
+            margin-left: 10px;               
+        }
+             
+            .link a{
+            display:block;
+            width: 10%;
+            font-size: 13px;
+            margin-left: 10px;        
+        }
+
+                    
+            form {
+            margin-left: 15px;
+            width: 90%;
+                
+
+                input {
+                    padding: 0 ;
+                    display:inline;
+                    margin: 1px;
+                    //text-align: center;
+                    text-align: justify;
+                        
+
+                    &[type=text] {
+                        width: 90%;
+                        height: 35px;
+                        text-align: center;
+                }
             }
+                button{
+                    line-height: 30px;
+                        
+                    &[type=submit] {
+                        width: 100%;
+                        text-align: center;
+                        border-radius: 20px 20px 20px 20px;
+                            
+                 }
+              }
+    
+          }
         }
-    }
-
-    #mensagemNaoEncontrado {
-        display: block;
-        text-align: center;
-        font-family: $fonte-padrao;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-
-    #areaPesquisa {
-        #campoPesquisa {
-            width: 80%;
-        }
-    }
-
-    #areaResultados {
-        .serie {
-            display: block;
-            width: 100%;
-        }
-    }
-}
+    
+    
